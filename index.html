@@ -1,1 +1,374 @@
-<!-- write code here -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shopping cart</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0  ;
+        }
+        body{
+            font-family: sans-serif;
+            background-color: rgb(250, 250, 250);
+        }
+        .navbar{
+            display:flex;
+            justify-content: space-around;
+            border-bottom: 1px solid lightgray;
+            height: 7vh;
+            padding: 10px;
+           background-color: white;
+        }
+        .start, .middle, .end{
+            display: flex;
+            flex-direction: row;
+            padding: 5px 5px;
+        }
+        .navbar .start i{
+            color: rgb(7, 255, 185);
+            font-size: 2em;
+            align-content: center;
+        }
+        .navbar .start h3{
+            padding: 2px;
+        }
+        .job{
+            font-size: 1.5em;
+            display: inline-block;
+        }
+        .passcard{
+            font-size: 1.5em;
+            font-weight: 100;
+            display: inline-block;
+        }
+        .navbar .middle h4,
+        .navbar .end h4, i{
+            padding: 20px;
+        }
+        .end i, div {
+            align-self: center;
+        }
+        .end i {
+            color: lightgray;
+        }
+
+        .navbar .end h4:nth-child(3){
+            border-right: 1px solid lightgrey;
+        }
+        .number{
+            position: relative;
+            color: white;
+            text-align: center;
+            font-size: 10px;
+        }
+        .badge{
+            position: absolute;
+            right: 305px;
+            top: 13px;
+            background-color: red;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .body{
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+        }
+        .mycart{
+            display: flex;
+            flex-direction: column;
+            margin-right: 3vw;
+            margin-top: 10vh;
+        }
+        .doc, .slide{
+            border-radius: 15px;
+            background-color: white;
+            width: 35vw;
+            height: 35vh;
+            margin-top: 20px;
+            display: flex;
+        }
+        .doc i, .slide i{
+            color:  rgb(7, 255, 185);
+            font-size: 1.5em;
+            align-self: center;
+        }
+        .googledocs{
+            padding: 15px;
+            width: 35%;
+            height: 60%;
+            border-radius: 15px;
+            background-color: rgb(69, 69, 237);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .googleslides{
+            padding: 15px;
+            width: 35%;
+            height: 60%;
+            border-radius: 15px;
+            background-color: rgb(255, 119, 0);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .googledocs h4{
+            color: white;
+            font-weight: 600;
+        }
+        .googledocs p{
+            color: white;
+            font-weight: 100;
+            font-size: 0.75em;
+        }
+        .docinfo{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 70%;
+            padding: 20px;
+        }
+        .googleslides h4{
+            color: white;
+            font-weight: 600;
+        }
+        .googleslides p{
+            color: white;
+            font-weight: 100;
+            font-size: 0.75em;
+        }
+        .slideinfo{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 70%;
+            padding: 20px;
+        }
+        
+        .icon1{
+            display: flex;
+            width: 25%;
+            height: 25%;
+            background-color: white;
+            border-radius: 5px;
+            justify-content: center;
+            align-items: center;
+            align-self: flex-start;
+        }
+        .container{
+            margin: 0px;
+            display: flex;
+            align-items: center;
+        }
+        .circle{
+            width: 15px;
+            height: 15px;
+            background-color: lightblue; 
+            border-radius: 50%;
+            margin: 5px 5px;
+            
+        }
+        .dropdown{
+            border: 0;
+            color: grey;
+            font-size: 1em;
+            margin-left: 20px;
+            border-radius: 5px;
+            padding: 5px 7.5px;
+            
+        }
+        .order{
+            display: flex;
+            flex-direction: column;
+            border: 1px solid lightgray;
+            border-radius: 15px;
+            width: 40vw;
+            height: 40vh;
+            margin-top: 20px;
+        }
+        .ordertop{
+            width: 90%;
+            height: 50%;    
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            border-bottom: 1px solid lightgray;
+        }
+        .subtotal{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .promo{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        .promo i{
+            color: rgb(7, 255, 185);
+            font-size: 1.5em;
+            align-self: center;
+        }
+        .promo input{
+            width: 50%;
+            height: 60%;
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            padding: 10px;
+            align-self: center;
+        }
+        .promo button{
+            width: 25%;
+            height: 60%;
+            border: 1px solid rgb(7, 255, 185);
+            color: rgb(7, 255, 185);
+            align-self: center;
+            font-weight: 800;
+            border-radius: 10px;
+            background-color:rgb(250, 250, 250);
+        }
+        .orderbottom{
+            width: 90%;
+            height: 50%;    
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            justify-content: space-around;
+        }
+        .total{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .checkout{
+            height: 30%;
+            background-color: rgb(7, 255, 185);
+            border-radius: 10px;
+            border: 0;
+            font-weight: 700;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="start">
+            <i class="bi bi-check"></i>
+            <div class="jobpasscard">
+                <h3 class="job">Job</h3>
+                <h3 class="passcard">Passcard</h3>
+            </div>
+        </div>
+        <div class="middle">
+            <h4>ABOUT US</h4>
+            <h4>PASSCARD</h4>
+            <h4>PROFILE</h4>
+        </div>
+        <div class="end">
+            <i class="bi bi-search"></i>
+            <div class="cart">
+                <i class="bi bi-cart"></i>
+                <div class="badge">
+                    <div class="number">1</div>
+                </div>
+            </div>
+            <h4>LOGIN</h4>
+            <h4>SIGN UP</h4>
+        </div>
+    </div>
+    <div class="body">
+        <div class="mycart">
+            <h1>My Cart</h1>
+            <div class="doc">
+                <i class="bi bi-trash"></i>
+                <!-- ------------------------- -->
+                <div class="googledocs">
+                    <div class="icon1">
+                        <i class="bi bi-file-earmark-medical" style="color:blue; padding: 0;"></i>
+                    </div>
+                    <h4>Google Docs</h4>
+                    <p>Used for business</p>
+                </div>
+                <!-- ------------------------- -->
+                <div class="docinfo">
+                    <h4 style="font-weight: 400; font-size: 1.5em; ">Google Docs</h4>
+                    <div class="level">
+                        <div class="container">
+                            <div class="circle" id="circle1"></div>
+                            <div class="circle" id="circle2"></div>
+                            <div class="circle" id="circle3"></div>
+                            <select class="dropdown" id="levelSelect">
+                              <option value="1-3">LV 1-3</option>
+                              <option value="2-3">LV 2-3</option>
+                              <option value="3-3">LV 3-3</option>
+                            </select>
+                          </div>
+                    </div>
+                    <h4 style="font-weight: 100; font-size: 1.5em; ">THB 150</h4>
+                </div>
+            </div>
+            <!--  -->
+            <div class="slide">
+                <i class="bi bi-trash"></i>
+                <div class="googleslides">
+                    <div class="icon1">
+                        <i class="bi bi-file-earmark-medical" style="color:rgb(255, 119, 0); padding: 0;"></i>
+                    </div>
+                    <h4>Google slides</h4>
+                    <p>Used for business</p>
+                </div>
+                <!-- ------------------------- -->
+                <div class="slideinfo">
+                    <h4 style="font-weight: 400; font-size: 1.5em; ">Google Slides</h4>
+                    <div class="level">
+                        <div class="container">
+                            <div class="circle" id="circle1"></div>
+                            <div class="circle" id="circle2"></div>
+                            <div class="circle" id="circle3"></div>
+                            <div class="circle" id="circle4"></div>
+                            <select class="dropdown" id="levelSelect">
+                              <option value="1-4">LV 1-4</option>
+                              <option value="2-4">LV 2-4</option>
+                              <option value="3-4">LV 3-4</option>
+                              <option value="4-4">LV 4-4</option>
+                            </select>
+                          </div>
+                    </div>
+                    <h4 style="font-weight: 100; font-size: 1.5em; ">THB 150</h4>
+                </div>
+            </div>
+        </div>
+        <div class="order">
+            <div class="ordertop">
+                <h4 style="font-size: 1.25em; font-weight: 800;">Order Info</h4>
+                <div class="subtotal">
+                    <h4 style="font-weight: 200; color: grey;">Subtotal</h4>
+                    <h4 style="font-weight: 400; color: grey; font-size: 1.25em;">THB 300</h4>
+                </div>
+                <div class="promo">
+                    <i class="bi bi-ticket-perforated"></i>
+                    <input type="text" class="input" placeholder="Promotion code">
+                    <button>APPLY</button>
+                </div>
+            </div>
+            <div class="orderbottom">
+                <div class="total">
+                    <h4 style="font-weight: 300; font-size: 1.5em;">Total payment</h4>
+                    <h2 style="font-weight: 900; font-size: 2em;color: rgb(7, 255, 185)">THB 300</h2>
+                </div>
+                <button class="checkout">
+                    LOG IN TO CHECKOUT
+                </button>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
